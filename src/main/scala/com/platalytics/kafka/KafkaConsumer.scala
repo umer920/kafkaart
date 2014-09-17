@@ -70,12 +70,12 @@ class KafkaConsumer(
   val stream = connector.createMessageStreamsByFilter(filterSpec, 1, new DefaultDecoder(), new DefaultDecoder()).get(0)
   info("setup:complete topic=%s for zk=%s and groupId=%s".format(topic,zookeeperConnect,groupId))
 
-  def read(write: (String)=>Unit) = {
+  def read() = {
     info("reading on stream now")
     for(messageAndTopic <- stream) {
       try {
         info("writing from stream")
-        write(messageAndTopic.message.toString())
+        println(messageAndTopic.message.toString())
         info("written to stream")
       } catch {
         case e: Throwable =>

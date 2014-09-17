@@ -8,8 +8,8 @@ object App {
   
   def main(args : Array[String]) {
     var consumer = new KafkaConsumer(topic = "scala", groupId = "1", zookeeperConnect = "cloud2:2181");
-    consumer.read(concat)
-    for (message <- messages) println(message)
+    consumer.read()
+    //for (message <- messages) println(message)
   }
   def concat(message: String){
     messages :::= List(message)
