@@ -9,6 +9,7 @@ import scala.collection.JavaConversions._
 import kafka.consumer.Consumer
 import kafka.consumer.ConsumerConfig
 import kafka.consumer.Whitelist
+//import org.apache.hadoop.hbase.util.Bytes
 
 class KafkaConsumer(
   topic: String, 
@@ -75,7 +76,7 @@ class KafkaConsumer(
     for(messageAndTopic <- stream) {
       try {
         info("writing from stream")
-        println(messageAndTopic.message.toString())
+        println(new String(messageAndTopic.message))
         info("written to stream")
       } catch {
         case e: Throwable =>
